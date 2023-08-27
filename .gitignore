@@ -1,14 +1,28 @@
 # Compiler files
 cache/
 out/
+.github/
 
 # Ignores development broadcast logs
 !/broadcast
 /broadcast/*/31337/
 /broadcast/**/dry-run/
+/broadcast/
 
 # Docs
 docs/
+lib/
 
 # Dotenv file
+coverage.log
 .env
+.gas-snapshot
+.prettierignore
+.prettierrc
+debug.log
+inspect_storage.log
+lcov.info
+.keystore
+remappings.txt
+Makefile
+settings.json
