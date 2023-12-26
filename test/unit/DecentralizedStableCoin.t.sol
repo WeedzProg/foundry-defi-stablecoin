@@ -6,16 +6,23 @@ import {Script} from "forge-std/Script.sol";
 import {Test, console} from "forge-std/Test.sol";
 import {StdCheats} from "forge-std/StdCheats.sol";
 import {DecentralizedStableCoin} from "../../src/DecentralizedStableCoin.sol";
+import {DSCEngine} from "../../src/DSCEngine.sol";
 import {DeployDecentralizedStableCoin} from "../../script/DeployDecentralizedStableCoin.s.sol";
+import {HelperConfig} from "../../script/HelperConfig.s.sol";
 
 contract StableCoinTest is Test {
+    DeployDecentralizedStableCoin deployer;
     DecentralizedStableCoin public stablecoin;
+    //    DecentralizedStableCoin dsc_contract;
+    DSCEngine dscEngine_contract;
+    HelperConfig helperConfig;
+
     address private USER = makeAddr("user");
 
     function setUp() public {
-        DeployDecentralizedStableCoin deployer = new DeployDecentralizedStableCoin();
+        deployer = new DeployDecentralizedStableCoin();
 
-        stablecoin = deployer.run();
+        (stablecoin, dscEngine_contract, helperConfig) = deployer.run();
     }
 
     function testMintingNotOwner() public {

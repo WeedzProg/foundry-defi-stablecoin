@@ -51,7 +51,8 @@ contract DecentralizedStableCoin is ERC20Burnable, Ownable {
 
     constructor() ERC20("Decentralized Stable Coin", "DSC") {
         //_mint(msg.sender, 1000000000000000000000000000);
-        _mint(msg.sender, 1000);
+        // DSCEngine will mint the initial supply of 1000 DSC for test purpose
+        //_mint(msg.sender, 1000);
     }
 
     function burn(uint256 _amount) public override onlyOwner {
@@ -62,6 +63,7 @@ contract DecentralizedStableCoin is ERC20Burnable, Ownable {
         if (_amount <= 0) {
             revert DecentralizedStableCoin__BurnAmountMustBeMoreThanZero();
         } else {
+            // use the burn function from the ERC20Burnable contract, the parent class
             super.burn(_amount);
             //_burn(msg.sender, _amount);
         }
